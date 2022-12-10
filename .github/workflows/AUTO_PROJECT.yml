@@ -6,7 +6,7 @@ on:
       - labeled
 
 jobs:
-  add-feature-to-project:
+  add-to-project:
     name: Add issue to project board
     runs-on: ubuntu-latest
     steps:

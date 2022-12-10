@@ -7,7 +7,7 @@ on:
     types: [opened]
 
 jobs:
-  assign-people:
+  assign-people-issue-pr:
     name: Auto assign people to issue/PR
     runs-on: ubuntu-latest
     steps:
