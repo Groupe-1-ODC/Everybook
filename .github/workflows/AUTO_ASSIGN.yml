@@ -1,0 +1,34 @@
+name: Automatically assign peoples to issues and PR
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  assign-people:
+    name: Auto assign people to issue/PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wow-actions/auto-assign@v2.1.0
+        name: 📝 Feature Assignment
+        with:
+          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          addAssignees: author
+          skipKeywords: draft
+          includeLabels: 📝 Feature
+
+      - uses: wow-actions/auto-assign@v2.1.0
+        name: 🪲 Bug Assignment
+        with:
+          GITHUB_TOKEN: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          addAssignees: true
+          assignees: |
+            DynamoRed
+          numberOfAssignees: 1
+          addReviewers: true
+          reviewers: |
+            DynamoRed
+          numberOfReviewers: 1
+          includeLabels: 🪲 Bug
