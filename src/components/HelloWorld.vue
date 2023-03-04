@@ -1,153 +1,91 @@
 <template>
-  <v-container>
-    <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
+  <div>
+    <v-app-bar elevation="0">
+      <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-      <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify 3 Beta
-        </h1>
+      <v-toolbar-title>EveryBook</v-toolbar-title>
+      <v-text-field prepend-icon="mdi-magnify" label="Search" variant="underlined" clearable hide-details="auto"
+        solo></v-text-field>
+      <v-spacer></v-spacer>
 
 
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
-        </p>
-      </v-col>
+    </v-app-bar>
+    <v-divider></v-divider>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-5">
-          What's next?
-        </h2>
+    <v-navigation-drawer>
+      <v-divider></v-divider>
+      <v-list>
+        <v-list-item v-for="item in items" :key="item.title" link>
 
-        <v-row justify="center">
-          <a
-            v-for="(next, i) in whatsNext"
-            :key="i"
-            :href="next.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ next.text }}
-          </a>
-        </v-row>
-      </v-col>
+          <v-icon class="mx-5">{{ item.icon }} </v-icon>{{ item.title }}
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-5">
-          Important Links
-        </h2>
+        </v-list-item>
+      </v-list>
 
-        <v-row justify="center">
-          <a
-            v-for="(link, i) in importantLinks"
-            :key="i"
-            :href="link.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ link.text }}
-          </a>
-        </v-row>
-      </v-col>
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-btn block>
+            Logout
+          </v-btn>
+        </div>
+      </template>
+    </v-navigation-drawer>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-container fluid>
+      <v-row>
+        <v-col v-for="card in cards" :key="card.title" :cols="card.flex">
+          <v-card>
+            <v-img :src="card.src" class="align-end" gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)" height="250px"
+              cover>
+              <v-card-title class="text-white" v-text="card.title"></v-card-title>
+            </v-img>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn @click.stop="dialog = true" size="small" color="surface-variant" variant="text"
+                icon="mdi-download"></v-btn>
+              <v-btn size="small" color="surface-variant" variant="text" icon="mdi-heart" icon-color="red"></v-btn>
+            </v-card-actions>
+          </v-card>
+          <v-spacer></v-spacer>
+        </v-col>
+        <v-spacer></v-spacer>
+        <v-dialog v-model="dialog" max-width="320">
+          <v-card>
+            <v-card-text>
+              Your book is added to your libray !
+            </v-card-text>
 
-      <v-col
-        class="mb-5"
-        cols="12"
-      >
-        <h2 class="headline font-weight-bold mb-5">
-          Ecosystem
-        </h2>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="dialog = false">
+                Close
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-row>
 
-        <v-row justify="center">
-          <a
-            v-for="(eco, i) in ecosystem"
-            :key="i"
-            :href="eco.href"
-            class="subheading mx-3"
-            target="_blank"
-          >
-            {{ eco.text }}
-          </a>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
+    </v-container>
+  </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue'
-
-
-export default defineComponent({
-  name: 'HelloWorld',
-
-  data () {
+<script lang="ts">
+export default {
+  data() {
     return {
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader/tree/next',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify/tree/next',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
+      items: [
+        { title: 'Library', icon: 'mdi-book-open' },
+        { title: 'Account', icon: 'mdi-account-box' },
+        { title: 'Admin', icon: 'mdi-gavel' },
       ],
-      importantLinks: [
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
+      cards: [
+        { title: 'Book 1', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg', flex: 2 },
+        { title: 'Book 2', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 2 },
+        { title: 'Book 3', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 2 },
       ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Roadmap',
-          href: 'https://vuetifyjs.com/en/introduction/roadmap/',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
+      dialog: false,
     }
   },
-})
+}
 </script>
