@@ -1,24 +1,17 @@
-# @dynamored/everybook
+## 🌟 Beta 1.0.0 !
+> **Warning**
+> Don't forget to watch and star this repository to be notified on future releases
 
-## Project setup
-```
-npm install
-```
+![Apollon](https://cdn.dynamored.com/vcs/banners/Everybook.png)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# 🎉 Usage
 
-### Compiles and minifies for production
 ```
-npm run build
+npm run production
 ```
+> **Note**
+> <br>For dev environment, use `start` script
+> <br>To launch test coverage, use `test` script
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 📃 License
+[GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html)
