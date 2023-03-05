@@ -4,11 +4,9 @@
   "private": true,
   "description": "Front app for Everybook",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "start": "vue-cli-service serve",
+    "production": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "production": "docker compose up",
-    "start": "ts-node src/server.ts",
     "test": "testyts"
   },
   "main": "./src/app",
