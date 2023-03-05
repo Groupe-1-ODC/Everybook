@@ -41,18 +41,33 @@
     "email": "team@dynamored.com"
   },
   "contributors": [
-    {
-      "name": "Raphael",
-      "email": "raphael@dynamored.com",
-      "url": "https://dynamored.com"
+		{
+			"name": "Raphael",
+			"url": "https://dynamored.com",
+			"email": "raphael@dynamored.com"
+		},
+		{
+			"name": "Maram",
+			"email": "zitouni.maram20@gmail.com"
+		},
+		{
+			"name": "Corentin",
+			"email": "corentin.lechene.pro@gmail.com"
+		}
+	],
+  "repository": {
+        "type": "git",
+        "url": "https://github.com/Groupe-1-ODC/Everybook.git"
     },
-    {
-      "name": "Maram",
-      "email": "zitouni.maram20@gmail.com"
+    "engines": {
+        "node": ">=16.10",
+        "npm": ">=8.0.0"
     },
-    {
-      "name": "Corentin",
-      "email": "corentin.lechene.pro@gmail.com"
+    "directories": {
+        "lib": "./libs",
+        "doc": "./docs",
+        "test": "./src/specs",
+        "src": "./src"
     }
   ],
   "directories": {
